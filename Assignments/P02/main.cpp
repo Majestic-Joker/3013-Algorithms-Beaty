@@ -37,6 +37,7 @@ WordList FindWords(WordList wordList, string substring) {
     for (int i = 0; i < wordList.size; i++) { // loop through wordList
         bool found = false;
 
+        //if the substring matches the corresponding characters of the prefix in wordList found = true
         if(wordList[i].substr(0, substring.size()).compare(substring) == 0)
             found = true;
 
@@ -51,8 +52,8 @@ WordList FindWords(WordList wordList, string substring) {
 int main() {
     char k;                             // holder for character being typed
     string word = "";                   // var to concatenate letters to
-    WordList words;                     // wordList of words
-    WordList matches;                   // any matches found in vector of animals
+    WordList words;                     // wordList of words from dictionary
+    WordList matches;                   // any matches found in words
 
     ofstream fout("temp.txt");          //output file
     ifstream fin("dictionary.txt");     //input file
@@ -122,5 +123,24 @@ int main() {
                 cout << termcolor::reset << endl;
             }
         }
+    }
+    //Output spits out to temp.txt after the search is complete
+    fout << T.Seconds() << " seconds" << endl;
+    fout << "Keypressed: " << termcolor::blue << k << " = " << (int)k << termcolor::reset << endl;
+    fout << "Current Substr: " << termcolor::red << word << termcolor::reset << endl;
+    fout << "Words Found: ";
+    fout << termcolor::red;
+    if(word.size() > 0){
+        // This prints out all found matches
+        for (int a = 0; a < matches.size; a++) {
+            //substring characters turn red rest are green
+            for(int b = 0; b < matches[a].size(); b++){
+                if(b >= word.size())
+                    fout << termcolor::green;
+                fout << matches[a][b];
+            }
+            fout << ' ' << termcolor::red;
+        }
+        cout << termcolor::reset << endl;
     }
 }

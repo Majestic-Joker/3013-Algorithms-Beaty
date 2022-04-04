@@ -1,0 +1,4 @@
+31 seconds
+Keypressed: Z = 90
+Current Substr: baz
+Words Found: bazaar bazaars bazon bazoo bazooka bazookas 
