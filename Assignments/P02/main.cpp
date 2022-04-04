@@ -11,6 +11,7 @@
 #include "mygetch.hpp"      // From Dr. Griffin
 #include "termcolor.hpp"    // From Dr. Griffin
 #include "timer.hpp"        // From Dr. Griffin
+#include "wordList.hpp"
 #include <algorithm>
 #include <fstream>
 #include <iostream>
@@ -23,25 +24,24 @@ using namespace std;
 
 /**
  * Description:
- *      Finds partial matches in an array of strings and returns them. It
- *      doesn't matter where in the string the match is.
+ *      Finds the prefix matches in a wordList of strings and returns them.
  * Params:
- *      vector<string>  array       - array to search
- *      string          substring   - substring to search for in each word
+ *      WordList wordList - WordList to search
+ *      string substring   - substring to search for in each word
  * 
  * Returns:
- *      vector<string> - holding all the matches to substring
+ *      WordList - holding all the matches to substring
  */
-vector<string> FindWords(vector<string> array, string substring) {
-    vector<string> matches; // to hold any matches
-    for (int i = 0; i < array.size(); i++) { // loop through array
+WordList FindWords(WordList wordList, string substring) {
+    WordList matches; // to hold any matches
+    for (int i = 0; i < wordList.size; i++) { // loop through wordList
         bool found = false;
 
-        if(array[i].substr(0, substring.size()).compare(substring) == 0)
+        if(wordList[i].substr(0, substring.size()).compare(substring) == 0)
             found = true;
 
         if (found) {
-            matches.push_back(array[i]);   // add to matches
+            matches.Push(wordList[i]);   // add to matches
         }
     }
 
@@ -51,8 +51,8 @@ vector<string> FindWords(vector<string> array, string substring) {
 int main() {
     char k;                             // holder for character being typed
     string word = "";                   // var to concatenate letters to
-    vector<string> words;               // array of words
-    vector<string> matches;             // any matches found in vector of animals
+    WordList words;                     // wordList of words
+    WordList matches;                   // any matches found in vector of animals
 
     ofstream fout("temp.txt");          //output file
     ifstream fin("dictionary.txt");     //input file
@@ -62,7 +62,7 @@ int main() {
 
     string w = "";
     while(fin >> w)
-        words.push_back(w);
+        words.Push(w);
 
     T.End(); // end the current timer
 
@@ -89,7 +89,6 @@ int main() {
                 cout << "Letters only!" << endl;
                 continue;
             }
-
             // We know its a letter, lets make sure its lowercase.
             // Any letter with ascii value < 97 is capital so we
             // lower it.
@@ -99,25 +98,24 @@ int main() {
             word += k; // append char to word
         }
 
-        // Find any animals in the array that partially match
-        // our substr word
+        // Find the prefix in the wordList that matches the substring
         matches = FindWords(words, word);
 
         if ((int)k != 32) { // if k is not a space print it
             T.End();
-            cout << T.NanoSeconds() << " nano" << endl;
+            cout << T.Seconds() << " seconds" << endl;
             cout << "Keypressed: " << termcolor::blue << k << " = " << (int)k << termcolor::reset << endl;
             cout << "Current Substr: " << termcolor::red << word << termcolor::reset << endl;
             cout << "Words Found: ";
             cout << termcolor::red;
             if(word.size() > 0){
                 // This prints out all found matches
-                for (string match : matches) {
+                for (int a = 0; a < matches.size; a++) {
                     //substring characters turn red rest are green
-                    for(int i = 0; i < match.size(); i++){
-                        if(i >= word.size())
+                    for(int b = 0; b < matches[a].size(); b++){
+                        if(b >= word.size())
                             cout << termcolor::green;
-                        cout << match[i];
+                        cout << matches[a][b];
                     }
                     cout << ' ' << termcolor::red;
                 }
