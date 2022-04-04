@@ -115,11 +115,11 @@ int main() {
                 for (string match : matches) {
                     //substring characters turn red rest are green
                     for(int i = 0; i < match.size(); i++){
-                        if(i > word.size())
+                        if(i >= word.size())
                             cout << termcolor::green;
                         cout << match[i];
                     }
-                    cout << ' ';
+                    cout << ' ' << termcolor::red;
                 }
                 cout << termcolor::reset << endl;
             }
