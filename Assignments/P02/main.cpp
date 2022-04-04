@@ -34,16 +34,11 @@ using namespace std;
  */
 vector<string> FindWords(vector<string> array, string substring) {
     vector<string> matches; // to hold any matches
-    bool found = false;
-
-    for(int a = 0; a < 10; a++)
-        cout << array[a] << '\n';
-
     for (int i = 0; i < array.size(); i++) { // loop through array
-        found = false;
+        bool found = false;
 
-        if(array[i].substr(0, substring.size()) == substring)
-            found == true;
+        if(array[i].substr(0, substring.size()).compare(substring) == 0)
+            found = true;
 
         if (found) {
             matches.push_back(array[i]);   // add to matches
