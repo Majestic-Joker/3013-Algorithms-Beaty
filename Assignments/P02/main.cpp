@@ -110,17 +110,19 @@ int main() {
             cout << "Current Substr: " << termcolor::red << word << termcolor::reset << endl;
             cout << "Words Found: ";
             cout << termcolor::red;
-            // This prints out all found matches
-            for (string match : matches) {
-                //substring characters turn red rest are green
-                for(int i = 0; i < match.size(); i++){
-                    if(i > word.size())
-                        cout << termcolor::green;
-                    cout << match[i];
+            if(word.size() > 0){
+                // This prints out all found matches
+                for (string match : matches) {
+                    //substring characters turn red rest are green
+                    for(int i = 0; i < match.size(); i++){
+                        if(i > word.size())
+                            cout << termcolor::green;
+                        cout << match[i];
+                    }
+                    cout << ' ';
                 }
-                cout << ' ';
+                cout << termcolor::reset << endl;
             }
-            cout << termcolor::reset << endl;
         }
     }
 }
