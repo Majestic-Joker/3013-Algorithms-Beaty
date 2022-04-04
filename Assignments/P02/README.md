@@ -13,10 +13,11 @@
 
 ### Files
 
-|   #   | File                    | Description                                        |
-| :---: | ----------------------- | -------------------------------------------------- |
-|   1   | [main.cpp](./main.cpp)  | Main driver of the program                         |
-|   2   | [dictionary](./dictionary.txt)  | Dictionary for word completion        |
+|   #   | File                    | Description                                                 |
+| :---: | ----------------------- | ----------------------------------------------------------- |
+|   1   | [main.cpp](./main.cpp)  | Main driver of the program                                  |
+|   2   | [wordList.hpp](./wordList.hpp)  | HPP holds the stuct for node and class for WordList |
+|   3   | [dictionary](./dictionary.txt)  | Dictionary for word completion        |
 
 ### Instructions
 
