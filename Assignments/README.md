@@ -7,3 +7,5 @@
 |   3   | [A03](./A03) | Download Banner Comments+, create a banner.txt |
 |   4   | [A04](./A04) | Set up a basic project in the assignments folder, comment a .cpp |
 |   5   | [P01](./P01) | Implement a custom vector class |
+|   6   | [P02](./P02) | Implement a linked list autocomplete, it's very slow |
+|   7   | [P03](./P03) | Implement a trie autocomplete, works very quickly |
